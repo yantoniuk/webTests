@@ -2,6 +2,7 @@ package com.solvd.carina.demo.demoqa;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.solvd.carina.demo.gui.pages.demoqa.CheckBoxPage;
 import com.solvd.carina.demo.gui.pages.demoqa.TextBoxPage;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -12,10 +13,10 @@ public class TextBoxTest extends AbstractTest {
 
     @BeforeTest()
     public void up() {
-        this.textBoxPage = new TextBoxPage(getDriver());
+        TextBoxPage textBoxPage = new TextBoxPage(getDriver());
         textBoxPage.open();
         getDriver().manage().window().fullscreen();
-        Assert.assertTrue(textBoxPage.isPageOpened(), "Text box page was not opened!");
+        Assert.assertTrue(textBoxPage.isPageOpened(), "checkBoxPage was not opened!");
     }
 
     @Test(description = "JIRA#AUTO-0008")
