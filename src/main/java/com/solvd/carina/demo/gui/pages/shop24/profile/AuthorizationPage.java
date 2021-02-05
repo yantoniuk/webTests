@@ -1,4 +1,4 @@
-package com.solvd.carina.demo.gui.pages.shop24;
+package com.solvd.carina.demo.gui.pages.shop24.profile;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
@@ -29,7 +29,8 @@ public class AuthorizationPage extends AbstractPage {
         passField.type(pass);
     }
 
-    public void submit() {
+    public ProfilePage submit() {
         submitButton.click();
+        return new ProfilePage(this.driver);
     }
 }
