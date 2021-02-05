@@ -27,7 +27,7 @@ public class MenuItem extends AbstractUIObject {
     @FindBy(xpath = ".//div[@class='top-search__input-block']/input")
     private ExtendedWebElement searchInputField;
 
-    @FindBy(xpath = "//ul[@class='cat_nav inner-cat-nav']/li/a")
+    @FindBy(css = "ul.cat_nav > li > a")
     private List<ExtendedWebElement> catalogItems;
 
     @FindBy(xpath = "//span[@class='page-header-bottom-btn__txt']")

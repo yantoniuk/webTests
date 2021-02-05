@@ -14,7 +14,7 @@ public class BasketPage extends HomePage {
 
     public BasketPage(WebDriver driver) {
         super(driver);
-        setPageAbsoluteURL("https://24shop.by/personal/basket.php");
+        setPageURL("/personal/basket.php");
     }
 
     public List<BasketItem> getProducts() {
