@@ -1,7 +1,7 @@
-package com.solvd.shop24.gui.pages.shop24.purchase;
+package com.solvd.shop24.gui.pages.purchase;
 
-import com.solvd.shop24.gui.pages.components.shop24.purchase.BasketItem;
-import com.solvd.shop24.gui.pages.shop24.HomePage;
+import com.solvd.shop24.gui.components.purchase.BasketItem;
+import com.solvd.shop24.gui.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 

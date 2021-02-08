@@ -1,7 +1,10 @@
-package com.solvd.shop24.gui.pages.shop24.news;
+package com.solvd.shop24.gui.pages.news;
 
+import com.beust.jcommander.Parameter;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ElementLoadingStrategy;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.solvd.shop24.gui.pages.shop24.HomePage;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
+import com.solvd.shop24.gui.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -13,9 +16,6 @@ public class ArticlePage extends HomePage {
     @FindBy(xpath = "//div[@class='news-detail']/div[2]")
     private ExtendedWebElement description;
 
-    @FindBy(xpath = "//div[@class='news-detail']//img")
-    private ExtendedWebElement image;
-
     public ArticlePage(WebDriver driver) {
         super(driver);
     }
@@ -24,11 +24,7 @@ public class ArticlePage extends HomePage {
         return title.getText();
     }
 
-    public String getDescription() {
-        return description.getText();
-    }
-
-    public boolean isImagePresent() {
-        return image.isPresent();
+    public boolean allElementsPresent() {
+        return allElementsPresent(title, description);
     }
 }

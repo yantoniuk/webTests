@@ -1,8 +1,8 @@
-package com.solvd.shop24.gui.pages.shop24.purchase;
+package com.solvd.shop24.gui.pages.purchase;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.solvd.shop24.gui.pages.components.shop24.purchase.CatalogProductItem;
+import com.solvd.shop24.gui.components.purchase.CatalogProductItem;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -24,15 +24,11 @@ public class ProductsCatalogPage extends AbstractPage {
         return products.get(index);
     }
 
-    public int ProductsCount() {
-        return products.size();
+    public List<CatalogProductItem> getProducts() {
+        return products;
     }
 
     public String getTitle() {
         return title.getText();
-    }
-
-    public ProductPage openProduct(CatalogProductItem item) {
-        return item.openItem();
     }
 }

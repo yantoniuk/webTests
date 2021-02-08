@@ -1,11 +1,12 @@
-package com.solvd.shop24.gui.pages.shop24.profile;
+package com.solvd.shop24.gui.pages.profile;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class AuthorizationPage extends AbstractPage {
+public class AuthenticationPage extends AbstractPage {
 
     @FindBy(name = "Login")
     private ExtendedWebElement submitButton;
@@ -16,9 +17,9 @@ public class AuthorizationPage extends AbstractPage {
     @FindBy(name = "USER_PASSWORD")
     private ExtendedWebElement passField;
 
-    public AuthorizationPage(WebDriver driver) {
+    public AuthenticationPage(WebDriver driver) {
         super(driver);
-        setPageURL("/personal/register.php");
+        setPageURL("/personal/auth.php");
     }
 
     public void typePhoneNumber(String phoneNumber) {
@@ -29,7 +30,9 @@ public class AuthorizationPage extends AbstractPage {
         passField.type(pass);
     }
 
-    public ProfilePage submit() {
+    public ProfilePage authentication(String phoneNumber, String pass) {
+        typePhoneNumber(phoneNumber);
+        typePassword(pass);
         submitButton.click();
         return new ProfilePage(this.driver);
     }

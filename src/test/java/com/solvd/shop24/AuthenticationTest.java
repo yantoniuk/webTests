@@ -1,42 +1,36 @@
 package com.solvd.shop24;
 
+import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.solvd.shop24.gui.pages.shop24.HomePage;
-import com.solvd.shop24.gui.pages.shop24.profile.ProfilePage;
+import com.solvd.shop24.gui.pages.HomePage;
+import com.solvd.shop24.gui.pages.profile.AuthenticationPage;
+import com.solvd.shop24.gui.pages.profile.ProfilePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-public class AuthenticationTest extends BaseTest {
-//1. Page is opened
-//2. Search input field has typed text (for example: "Когтеточка")
-//3. ProductPage is opened (random product item has price and title,
-// which contain typed text). For example:
-//"Когтеточка Trixie Sisal 43071 (бежевый)" contains "Когтеточка"
+public class AuthenticationTest extends AbstractTest {
 
-    @Test(description = "JIRA#AUTO-0008")
+    @Test
     @MethodOwner(owner = "yantoniuk")
-    public void successAuthentication() {
-        String phoneNumber = "444544281";
-        String password = "cmn0hd";
-        HomePage homePage = openHomePage(getDriver());
-        ProfilePage profilePage = homePage.getMenu().authorization(phoneNumber, password);
-        Assert.assertEquals(getDriver().getCurrentUrl(),
-                "https://24shop.by/cabinet/settings/", "authentication is failed!");
-        Assert.assertEquals(profilePage.getName(), "Alex", "invalid name!");
-        Assert.assertEquals(profilePage.getEmail(), "y@mail.ru", "invalid email!");
-        Assert.assertEquals(profilePage.getPhoneNumber(), "+375 44 454-42-81",
-                "invalid phone number!");
-    }
+    public void testSuccessAuthentication() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
 
-    @Test(description = "JIRA#AUTO-0008")
-    @MethodOwner(owner = "yantoniuk")
-    public void failedAuthentication() {
-        String phoneNumber = "444544281";
-        String password = "invalid11";
-        HomePage homePage = openHomePage(getDriver());
-        homePage.getMenu().authorization(phoneNumber, password);
-        Assert.assertEquals(getDriver().getCurrentUrl(),
-                "https://24shop.by/personal/auth.php?login=yes",
-                "failed authentication was expected!");
+        AuthenticationPage authenticationPage = homePage.navigateToAuthentificationPage();
+        authenticationPage.assertPageOpened();
+
+        ProfilePage profilePage = authenticationPage.authentication(R.TESTDATA.get("account.phoneNumber").substring(4),
+                R.TESTDATA.get("account.password"));
+        profilePage.assertPageOpened();
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(profilePage.getName(), R.TESTDATA.get("account.name"), "Invalid name!");
+        softAssert.assertEquals(profilePage.getEmail(), R.TESTDATA.get("account.email"), "Invalid email!");
+        softAssert.assertEquals(profilePage.getPhoneNumber(), R.TESTDATA.get("account.phoneNumber"),
+                "Invalid phone number!");
+        softAssert.assertAll();
     }
 }

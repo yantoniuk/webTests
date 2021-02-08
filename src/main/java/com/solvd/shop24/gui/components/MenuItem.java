@@ -1,14 +1,12 @@
-package com.solvd.shop24.gui.pages.components.shop24;
+package com.solvd.shop24.gui.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.solvd.shop24.gui.pages.components.shop24.constant.LocatorsConstants;
-import com.solvd.shop24.gui.pages.shop24.news.NewsPage;
-import com.solvd.shop24.gui.pages.shop24.profile.AuthorizationPage;
-import com.solvd.shop24.gui.pages.shop24.profile.ProfilePage;
-import com.solvd.shop24.gui.pages.shop24.purchase.BasketPage;
-import com.solvd.shop24.gui.pages.shop24.purchase.SearchPage;
-import com.solvd.shop24.gui.pages.shop24.purchase.SectionsCatalogPage;
+import com.solvd.shop24.gui.components.constant.ComponentLocatorsConstants;
+import com.solvd.shop24.gui.pages.news.NewsPage;
+import com.solvd.shop24.gui.pages.purchase.BasketPage;
+import com.solvd.shop24.gui.pages.purchase.SearchPage;
+import com.solvd.shop24.gui.pages.purchase.SectionsCatalogPage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
@@ -17,9 +15,6 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class MenuItem extends AbstractUIObject {
-
-    @FindBy(xpath = "//span[text()='Вход']")
-    private ExtendedWebElement authLink;
 
     @FindBy(className = "catalog-btn__txt")
     private ExtendedWebElement catalogMenu;
@@ -40,9 +35,14 @@ public class MenuItem extends AbstractUIObject {
         super(driver, searchContext);
     }
 
+    @Override
+    public boolean isUIObjectPresent() {
+        return basketMenuButton.isClickable() && allElementsPresent(newsLink, catalogMenu, searchInputField);
+    }
+
     public BasketPage showBasket() {
         basketMenuButton.click();
-        findExtendedWebElement(LocatorsConstants.BASKET_BUTTON).click();
+        findExtendedWebElement(ComponentLocatorsConstants.BASKET_BUTTON).click();
         return new BasketPage(this.driver);
     }
 
@@ -74,15 +74,7 @@ public class MenuItem extends AbstractUIObject {
         return new NewsPage(this.driver);
     }
 
-    public ProfilePage authorization(String phoneNumber, String pass) {
-        authLink.click();
-        AuthorizationPage authorizationPage = new AuthorizationPage(this.driver);
-        authorizationPage.typePhoneNumber(phoneNumber);
-        authorizationPage.typePassword(pass);
-        return authorizationPage.submit();
-    }
-
     public boolean isCatalogMenuOpened() {
-        return findExtendedWebElement(LocatorsConstants.OPENED_CATALOG_MENU).isPresent();
+        return findExtendedWebElement(ComponentLocatorsConstants.OPENED_CATALOG_MENU).isPresent();
     }
 }

@@ -1,4 +1,4 @@
-package com.solvd.shop24.gui.pages.components.shop24.purchase;
+package com.solvd.shop24.gui.components.purchase;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;

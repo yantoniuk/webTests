@@ -1,8 +1,8 @@
-package com.solvd.shop24.gui.pages.shop24.news;
+package com.solvd.shop24.gui.pages.news;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.solvd.shop24.gui.pages.components.shop24.ArticleItem;
-import com.solvd.shop24.gui.pages.shop24.HomePage;
+import com.solvd.shop24.gui.components.news.ArticleItem;
+import com.solvd.shop24.gui.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,6 +18,7 @@ public class NewsPage extends HomePage {
 
     public NewsPage(WebDriver driver) {
         super(driver);
+        setPageURL("/news/");
     }
 
     public String getTitle() {

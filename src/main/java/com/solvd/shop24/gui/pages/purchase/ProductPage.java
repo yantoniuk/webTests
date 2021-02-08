@@ -1,8 +1,8 @@
-package com.solvd.shop24.gui.pages.shop24.purchase;
+package com.solvd.shop24.gui.pages.purchase;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.solvd.shop24.gui.pages.shop24.HomePage;
-import com.solvd.shop24.gui.pages.shop24.constant.PageLocatorsConstants;
+import com.solvd.shop24.gui.pages.HomePage;
+import com.solvd.shop24.gui.pages.constant.PageLocatorsConstants;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -13,10 +13,10 @@ public class ProductPage extends HomePage {
     @FindBy (className = "page-main__title")
     private ExtendedWebElement title;
 
-    @FindBy(xpath = "//div[@class='catalog-price-value price-main']")
+    @FindBy(xpath = "//div[@class='price-container']/div")
     private ExtendedWebElement priceRubs;
 
-    @FindBy(xpath = "//div[@class='catalog-price-value price-main']/sup")
+    @FindBy(xpath = "//div[@class='price-container']//sup")
     private ExtendedWebElement priceCoints;
 
     @FindBy(xpath = "//div[@class='product-parameters']//li")
@@ -34,6 +34,9 @@ public class ProductPage extends HomePage {
     }
 
     public String getPrice() {
+        if (!findExtendedWebElements(PageLocatorsConstants.IS_NOT_IN_STOCK_MESSAGE, 5).isEmpty()) {
+            return "К сожалению, товар закончился на складе";
+        }
         return priceRubs.getText() + " " + priceCoints.getText();
     }
 

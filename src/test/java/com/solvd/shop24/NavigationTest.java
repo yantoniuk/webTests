@@ -1,32 +1,44 @@
 package com.solvd.shop24;
 
+import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.solvd.shop24.gui.pages.components.shop24.purchase.CatalogProductItem;
-import com.solvd.shop24.gui.pages.shop24.HomePage;
-import com.solvd.shop24.gui.pages.shop24.purchase.ProductPage;
-import com.solvd.shop24.gui.pages.shop24.purchase.ProductsCatalogPage;
-import com.solvd.shop24.gui.pages.shop24.purchase.SectionsCatalogPage;
+import com.solvd.shop24.gui.components.purchase.CatalogProductItem;
+import com.solvd.shop24.gui.pages.HomePage;
+import com.solvd.shop24.gui.pages.purchase.ProductPage;
+import com.solvd.shop24.gui.pages.purchase.ProductsCatalogPage;
+import com.solvd.shop24.gui.pages.purchase.SectionsCatalogPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class NavigationTest extends BaseTest {
-    @Test(description = "JIRA#AUTO-0010")
+import java.util.Random;
+
+public class NavigationTest extends AbstractTest {
+
+    @Test
     @MethodOwner(owner = "yantoniuk")
-    public void searchByCatalogTest() {
-        HomePage homePage = openHomePage(getDriver());
+    public void testSearchByCatalog() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
+
         homePage.getMenu().openCatalogMenu();
-        Assert.assertTrue(homePage.getMenu().catalogItemsCount() > 0, "products were expected!");
+        Assert.assertTrue(homePage.getMenu().catalogItemsCount() > 0, "Products were expected!");
+
         SectionsCatalogPage catalogPage = homePage.getMenu().searchProductByCatalog("Авто и мото");
-        Assert.assertEquals(catalogPage.getTitle(), "Авто и мото", "invalid section!");
+        Assert.assertEquals(catalogPage.getTitle(), "Авто и мото", "Invalid section!");
+
         ProductsCatalogPage productsCatalogPage = catalogPage.openCatalogItem("Шины");
-        Assert.assertEquals("Шины", productsCatalogPage.getTitle(), "invalid type of product!");
-        Assert.assertTrue(productsCatalogPage.ProductsCount() > 0, "empty product's list!");
-        CatalogProductItem productItem = productsCatalogPage.getProduct(0);
+        Assert.assertEquals(productsCatalogPage.getTitle(), "Шины", "Invalid type of product!");
+        Assert.assertFalse(productsCatalogPage.getProducts().isEmpty(), "Empty product's list!");
+        int productIndex = new Random().nextInt(productsCatalogPage.getProducts().size() - 1);
+        CatalogProductItem productItem = productsCatalogPage.getProduct(productIndex);
         String title = productItem.getTitle();
-        Assert.assertTrue(productItem.getTitle().contains("шины"), "invalid type of product item!");
+        Assert.assertTrue(productItem.getTitle().contains("шины"), "Invalid type of product item!");
+
         ProductPage productPage = productItem.openItem();
         Assert.assertTrue(productPage.getTitle().contains(title),
                 "invalid title of a product!");
-        Assert.assertTrue(productPage.getPrice().length() > 1, "invalid value of a price!");
+        Assert.assertTrue(productPage.getPrice().contains("К сожалению, товар закончился на складе") ||
+                productPage.getPrice().length() > 1, "Invalid value of a price!");
     }
 }

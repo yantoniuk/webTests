@@ -1,26 +1,37 @@
 package com.solvd.shop24;
 
+import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.solvd.shop24.gui.pages.shop24.news.ArticlePage;
-import com.solvd.shop24.gui.pages.shop24.HomePage;
-import com.solvd.shop24.gui.pages.shop24.news.NewsPage;
+import com.solvd.shop24.gui.components.news.ArticleItem;
+import com.solvd.shop24.gui.pages.news.ArticlePage;
+import com.solvd.shop24.gui.pages.HomePage;
+import com.solvd.shop24.gui.pages.news.NewsPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-public class NewsTest extends BaseTest {
-    @Test(description = "JIRA#AUTO-0010")
+import java.util.Random;
+
+public class NewsTest extends AbstractTest {
+
+    @Test
     @MethodOwner(owner = "yantoniuk")
-    public void readingNews() {
-        HomePage homePage = openHomePage(getDriver());
+    public void testReadNews() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
+
         NewsPage newsPage = homePage.getMenu().openNews();
-        Assert.assertEquals(getDriver().getCurrentUrl(), "https://24shop.by/news/",
-                "New page wasn't opened!");
-        Assert.assertEquals(newsPage.getTitle(), "Новости", "invalid title of News page!");
-        Assert.assertFalse(newsPage.getArticlesList().isEmpty(), "empty article's list!");
-        String title = newsPage.getArticle(0).getTitle();
-        ArticlePage articlePage = newsPage.getArticle(0).openArticle();
-        Assert.assertTrue(articlePage.getTitle().equals(title), "invalid article was opened!");
-        Assert.assertTrue(articlePage.isImagePresent(), "image wasn't found!");
-        Assert.assertFalse(articlePage.getDescription().isEmpty(), "empty article's description!");
+        newsPage.assertPageOpened();
+        Assert.assertEquals(newsPage.getTitle(), "Новости", "Invalid title of News page!");
+        Assert.assertFalse(newsPage.getArticlesList().isEmpty(), "Empty article's list!");
+        int articleIndex = new Random().nextInt(newsPage.getArticlesList().size() - 1);
+        ArticleItem articleItem = newsPage.getArticle(articleIndex);
+        String title = articleItem.getTitle();
+
+        ArticlePage articlePage = articleItem.openArticle();
+        new SoftAssert().assertTrue(articlePage.allElementsPresent(),
+                "Article page hasn't a description or a title!");
+        Assert.assertEquals(articlePage.getTitle(), title, "Invalid article was opened!");
     }
 }

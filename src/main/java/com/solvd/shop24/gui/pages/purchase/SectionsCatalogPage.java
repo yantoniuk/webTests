@@ -1,7 +1,7 @@
-package com.solvd.shop24.gui.pages.shop24.purchase;
+package com.solvd.shop24.gui.pages.purchase;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.solvd.shop24.gui.pages.shop24.HomePage;
+import com.solvd.shop24.gui.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SectionsCatalogPage extends HomePage {
 
-    @FindBy(xpath = "//div[@class='list-block js-accordion__body']//span")
+    @FindBy(css = "div.list-block>ul>li>a>span")
     private List<ExtendedWebElement> catalogItems;
 
     @FindBy(className = "page-main__title")

@@ -1,8 +1,8 @@
-package com.solvd.shop24.gui.pages.components.shop24.purchase;
+package com.solvd.shop24.gui.components.purchase;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.solvd.shop24.gui.pages.shop24.purchase.ProductPage;
+import com.solvd.shop24.gui.pages.purchase.ProductPage;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;

@@ -1,7 +1,7 @@
-package com.solvd.shop24.gui.pages.shop24.profile;
+package com.solvd.shop24.gui.pages.profile;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.solvd.shop24.gui.pages.shop24.HomePage;
+import com.solvd.shop24.gui.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,6 +18,7 @@ public class ProfilePage extends HomePage {
 
     public ProfilePage(WebDriver driver) {
         super(driver);
+        setPageURL("/cabinet/settings/");
     }
 
     public String getName() {
