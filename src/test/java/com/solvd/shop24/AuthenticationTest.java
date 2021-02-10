@@ -3,9 +3,9 @@ package com.solvd.shop24;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.solvd.shop24.gui.pages.HomePage;
-import com.solvd.shop24.gui.pages.profile.AuthenticationPage;
-import com.solvd.shop24.gui.pages.profile.ProfilePage;
+import com.solvd.shop24.gui.common.pages.HomePageBase;
+import com.solvd.shop24.gui.common.pages.profile.AuthenticationPageBase;
+import com.solvd.shop24.gui.common.pages.profile.ProfilePageBase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -15,14 +15,14 @@ public class AuthenticationTest extends AbstractTest {
     @Test
     @MethodOwner(owner = "yantoniuk")
     public void testSuccessAuthentication() {
-        HomePage homePage = new HomePage(getDriver());
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
 
-        AuthenticationPage authenticationPage = homePage.navigateToAuthentificationPage();
+        AuthenticationPageBase authenticationPage = homePage.getMenu().navigateToAuthenticationPage();
         authenticationPage.assertPageOpened();
 
-        ProfilePage profilePage = authenticationPage.authentication(R.TESTDATA.get("account.phoneNumber").substring(4),
+        ProfilePageBase profilePage = authenticationPage.authentication(R.TESTDATA.get("account.authPhoneNumber"),
                 R.TESTDATA.get("account.password"));
         profilePage.assertPageOpened();
 
