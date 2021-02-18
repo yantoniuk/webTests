@@ -93,10 +93,6 @@ public class MenuItem extends AbstractUIObject implements ICustomTypePageFactory
         return initPage(this.driver, NewsPageBase.class);
     }
 
-//    public boolean isCatalogMenuOpened() {
-//        return findExtendedWebElement(ComponentLocatorsConstants.OPENED_CATALOG_MENU).isPresent();
-//    }
-
     public AuthenticationPageBase navigateToAuthenticationPage() {
         findExtendedWebElement(ComponentLocatorsConstants.LOG_IN_LINK).click();
         return initPage(this.driver, AuthenticationPageBase.class);
