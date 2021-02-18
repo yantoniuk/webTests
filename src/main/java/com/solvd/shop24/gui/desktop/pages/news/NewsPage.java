@@ -20,7 +20,6 @@ public class NewsPage extends NewsPageBase {
 
     public NewsPage(WebDriver driver) {
         super(driver);
-        setPageURL("/news/");
     }
 
     public String getTitle() {

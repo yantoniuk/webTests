@@ -1,32 +1,31 @@
-package com.solvd.shop24.gui.android.pages.news;
+package com.solvd.shop24.gui.ios.pages.news;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.solvd.shop24.gui.common.components.MenuItem;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
 import com.solvd.shop24.gui.common.pages.news.NewsPageBase;
-import com.solvd.shop24.gui.common.components.news.ArticleItem;
+import com.solvd.shop24.gui.ios.components.ArticleItem;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = NewsPageBase.class)
-public class NewsPage extends NewsPageBase implements IMobileUtils{
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = NewsPageBase.class)
+public class NewsPage extends NewsPageBase {
 
-    @FindBy(className = "page-nav")
-    private MenuItem menu;
-
-    @FindBy(className = "page-main__title")
+    @FindBy(xpath = "name = 'Новости' AND type = 'XCUIElementTypeStaticText' AND value != '1'")
+    @Predicate
     private ExtendedWebElement title;
 
-    @FindBy(className = "news-item__content")
-    private List<ArticleItem> articlesList;
+    @FindBy(xpath = "value MATCHES '3' AND type = 'XCUIElementTypeLink' AND label != '3'")
+    @Predicate
+    public List<ArticleItem> articlesList;
 
     public NewsPage(WebDriver driver) {
         super(driver);
     }
 
+    @Override
     public String getTitle() {
         return title.getText();
     }
@@ -36,8 +35,8 @@ public class NewsPage extends NewsPageBase implements IMobileUtils{
         return articlesList;
     }
 
+    @Override
     public ArticleItem getArticle(int index) {
         return articlesList.get(index);
     }
 }
-

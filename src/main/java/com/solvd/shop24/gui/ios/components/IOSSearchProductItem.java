@@ -1,38 +1,43 @@
-package com.solvd.shop24.gui.common.components.purchase;
+package com.solvd.shop24.gui.ios.components;
 
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
+import com.solvd.shop24.gui.common.components.purchase.SearchProductItemBase;
+import com.solvd.shop24.gui.common.pages.HomePageBase;
 import com.solvd.shop24.gui.common.pages.purchase.ProductPageBase;
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import utils.MobileContextUtils;
 
-public class SearchProductItem extends AbstractUIObject implements ICustomTypePageFactory, SearchProductItemBase {
+public class IOSSearchProductItem extends AbstractUIObject implements SearchProductItemBase, ICustomTypePageFactory {
 
-    @FindBy(xpath = ".//span[@class='main_lnk']")
-    private ExtendedWebElement title;
+    @FindBy(xpath = ".//a[@class='pseudo-link']")
+    private ExtendedWebElement productItemLink;
 
     @FindBy(xpath = ".//div[@class='price']/span")
     private ExtendedWebElement price;
 
-    @FindBy(xpath = ".//a[@class='pseudo-link']")
-    private ExtendedWebElement openProductLink;
-
-    public SearchProductItem(WebDriver driver, SearchContext searchContext) {
+    public IOSSearchProductItem(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
+    @Override
     public String getTitle() {
-        return title.getText();
+        return productItemLink.getAttribute("title");
     }
 
+    @Override
     public String getPrice() {
         return price.getText();
     }
 
+    @Override
     public ProductPageBase openItem() {
-        openProductLink.click();
+        productItemLink.click();
         return initPage(this.driver, ProductPageBase.class);
     }
 }

@@ -22,8 +22,8 @@ public class SearchProductsTest extends AbstractTest {
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
 
-        SearchPageBase searchPage = homePage.getMenu().searchProductBySearchField("Когтеточка");
-        Assert.assertEquals(searchPage.getMenu().getSearchInputFieldText(),"Когтеточка",
+        SearchPageBase searchPage = homePage.getMenu().searchProductBySearchField("когтеточка");
+        Assert.assertEquals(searchPage.getMenu().getSearchInputFieldText(),"когтеточка",
                 "Invalid typed text!");
         int productIndex = new Random().nextInt(searchPage.getProducts().size() - 1);
         String searchProductTitle = searchPage.getItem(productIndex).getTitle();

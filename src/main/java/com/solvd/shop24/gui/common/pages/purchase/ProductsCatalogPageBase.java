@@ -1,7 +1,6 @@
 package com.solvd.shop24.gui.common.pages.purchase;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.solvd.shop24.gui.common.components.MenuItem;
 import com.solvd.shop24.gui.common.pages.HomePageBase;
 import com.solvd.shop24.gui.common.components.purchase.CatalogProductItem;
 import org.openqa.selenium.WebDriver;
