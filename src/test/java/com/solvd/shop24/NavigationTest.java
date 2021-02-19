@@ -19,11 +19,9 @@ public class NavigationTest extends AbstractTest {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
-
         Assert.assertTrue(homePage.getMenu().catalogItemsCount() > 0, "Products were expected!");
 
-        ProductsCatalogPageBase productsCatalogPage = homePage.getMenu()
-                .searchProductByCatalog("Авто и мото", "Автомобильные лампы");
+        ProductsCatalogPageBase productsCatalogPage = homePage.getMenu().searchProductByCatalog("Авто и мото", "Автомобильные лампы");
         Assert.assertEquals(productsCatalogPage.getTitle(), "Автомобильные лампы", "Invalid type of product!");
         Assert.assertFalse(productsCatalogPage.getProducts().isEmpty(), "Empty product's list!");
         int productIndex = new Random().nextInt(productsCatalogPage.getProducts().size() - 1);

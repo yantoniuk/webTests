@@ -1,10 +1,13 @@
 package com.solvd.shop24.gui.common.components;
 
 import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
+import com.solvd.shop24.gui.common.components.MenuItemBase;
 import com.solvd.shop24.gui.common.constants.LocatorConstants;
+import com.solvd.shop24.gui.common.pages.HomePageBase;
 import com.solvd.shop24.gui.common.pages.news.NewsPageBase;
 import com.solvd.shop24.gui.common.pages.profile.AuthenticationPageBase;
 import com.solvd.shop24.gui.common.pages.purchase.BasketPageBase;
@@ -16,10 +19,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import javax.swing.*;
 import java.util.List;
 
-public class MenuItem extends AbstractUIObject implements ICustomTypePageFactory {
+public class MenuItem extends AbstractUIObject implements ICustomTypePageFactory, MenuItemBase {
 
     @FindBy(className = "catalog-btn__txt")
     private ExtendedWebElement catalogMenu;
@@ -35,6 +37,10 @@ public class MenuItem extends AbstractUIObject implements ICustomTypePageFactory
 
     public MenuItem(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
+    }
+
+    public MenuItem(WebDriver driver) {
+        super(driver);
     }
 
     @Override
@@ -85,10 +91,6 @@ public class MenuItem extends AbstractUIObject implements ICustomTypePageFactory
             findExtendedWebElement(new By.ByLinkText("Новости")).click();
         }
         return initPage(this.driver, NewsPageBase.class);
-    }
-
-    public boolean isCatalogMenuOpened() {
-        return findExtendedWebElement(ComponentLocatorsConstants.OPENED_CATALOG_MENU).isPresent();
     }
 
     public AuthenticationPageBase navigateToAuthenticationPage() {

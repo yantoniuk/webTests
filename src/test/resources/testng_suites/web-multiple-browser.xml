@@ -13,7 +13,7 @@
 
     <test name="Multiple Browser Test">
         <classes>
-            <class name="com.solvd.carina.demo.WebMultipleBrowserTest"/>
+<!--            <class name="com.solvd.carina.demo.WebMultipleBrowserTest"/>-->
         </classes>
     </test>
 

@@ -16,9 +16,6 @@ public class ArticlePage extends ArticlePageBase {
     @FindBy(xpath = "//div[@class='news-detail']/div[2]")
     private ExtendedWebElement description;
 
-    @FindBy(className = "page-nav")
-    private MenuItem menu;
-
     public ArticlePage(WebDriver driver) {
         super(driver);
     }

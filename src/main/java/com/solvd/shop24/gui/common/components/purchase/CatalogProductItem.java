@@ -1,5 +1,6 @@
 package com.solvd.shop24.gui.common.components.purchase;
 
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
@@ -9,6 +10,7 @@ import com.solvd.shop24.gui.desktop.pages.purchase.ProductPage;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import utils.MobileContextUtils;
 
 public class CatalogProductItem extends AbstractUIObject implements ICustomTypePageFactory {
 
@@ -29,6 +31,9 @@ public class CatalogProductItem extends AbstractUIObject implements ICustomTypeP
 
     public CatalogProductItem(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
+        if (R.CONFIG.get("platform").equals("iOS")) {
+            new MobileContextUtils().switchMobileContext(MobileContextUtils.View.WEB);
+        }
     }
 
     public String getTitle() {

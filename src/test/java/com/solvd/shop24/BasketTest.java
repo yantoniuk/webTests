@@ -10,6 +10,7 @@ import com.solvd.shop24.gui.desktop.pages.HomePage;
 import com.solvd.shop24.gui.desktop.pages.purchase.BasketPage;
 import com.solvd.shop24.gui.desktop.pages.purchase.ProductPage;
 import com.solvd.shop24.gui.desktop.pages.purchase.SearchPage;
+import io.appium.java_client.ios.IOSDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -22,11 +23,9 @@ public class BasketTest extends AbstractTest {
     public void testOpenBasket() {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
-
         SearchPageBase searchPage = homePage.getMenu().searchProductBySearchField("когтеточка");
-
         int productIndex = new Random().nextInt(searchPage.getProducts().size() - 1);
+        System.out.println("opening product page....");
         ProductPageBase productPage = searchPage.getItem(productIndex).openItem();
         String title = productPage.getTitle();
         productPage.addToBasket();

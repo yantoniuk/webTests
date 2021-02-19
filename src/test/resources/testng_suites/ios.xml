@@ -20,7 +20,7 @@
 
 	<test name="Mobile test">
 		<classes>
-			<class name="com.solvd.carina.demo.MobileSampleTest" />
+<!--			<class name="com.solvd.carina.demo.MobileSampleTest" />-->
 		</classes>
 	</test>
 
