@@ -7,6 +7,7 @@ import com.solvd.shop24.gui.common.pages.purchase.ProductPageBase;
 import com.solvd.shop24.gui.common.pages.purchase.ProductsCatalogPageBase;
 import com.solvd.shop24.gui.common.components.purchase.CatalogProductItem;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.util.Random;
@@ -14,9 +15,10 @@ import java.util.Random;
 public class NavigationTest extends AbstractTest {
 
     @Test
+    @Parameters({"browserName"})
     @MethodOwner(owner = "yantoniuk")
-    public void testSearchByCatalog() {
-        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
+    public void testSearchByCatalog(String browserName) {
+        HomePageBase homePage = initPage(getDriver(browserName), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
         Assert.assertTrue(homePage.getMenu().catalogItemsCount() > 0, "Products were expected!");

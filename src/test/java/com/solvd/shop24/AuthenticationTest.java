@@ -11,15 +11,17 @@ import org.junit.After;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class AuthenticationTest extends AbstractTest {
 
     @Test
+    @Parameters({"browserName"})
     @MethodOwner(owner = "yantoniuk")
-    public void testSuccessAuthentication() {
-        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
+    public void testSuccessAuthentication(String browserName) {
+        HomePageBase homePage = initPage(getDriver(browserName), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
 

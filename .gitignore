@@ -34,3 +34,5 @@ reports/*
 /bin/
 *.DS_Store
 src/main/resources/crypto.key
+/config/logs
+/config/video

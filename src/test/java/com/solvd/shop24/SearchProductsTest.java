@@ -7,19 +7,30 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.solvd.shop24.gui.common.pages.HomePageBase;
 import com.solvd.shop24.gui.common.pages.purchase.ProductPageBase;
 import com.solvd.shop24.gui.common.pages.purchase.SearchPageBase;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
 import java.util.Random;
 
 public class SearchProductsTest extends AbstractTest {
+
+    private WebDriver driver;
+
+    @BeforeTest
+    @Parameters({"browserName"})
+    private void up(String browserName) {
+        driver = getDriver(browserName);
+    }
 
     @Test(dataProvider = "DataProvider")
     @MethodOwner(owner = "yantoniuk")
     @XlsDataSourceParameters(path = "xls/Book1.xlsx", sheet = "Products",
             dsUid = "TUID" , dsArgs = "name")
     public void testSearchProduct(String name) {
-        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
+        HomePageBase homePage = initPage(this.driver, HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
 
