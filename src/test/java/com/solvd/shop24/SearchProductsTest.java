@@ -2,14 +2,12 @@ package com.solvd.shop24;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
-import com.qaprosoft.carina.core.foundation.report.testrail.TestRailCases;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.solvd.shop24.gui.common.pages.HomePageBase;
 import com.solvd.shop24.gui.common.pages.purchase.ProductPageBase;
 import com.solvd.shop24.gui.common.pages.purchase.SearchPageBase;
-import org.junit.jupiter.params.ParameterizedTest;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.springframework.test.context.event.annotation.BeforeTestMethod;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -19,7 +17,7 @@ public class SearchProductsTest extends AbstractTest {
 
     private WebDriver driver;
 
-    @BeforeTest
+    @BeforeMethod
     @Parameters({"browserName"})
     private void up(String browserName) {
         driver = getDriver(browserName);
@@ -45,4 +43,5 @@ public class SearchProductsTest extends AbstractTest {
         Assert.assertTrue(productPage.getTitle().contains(searchProductTitle),
                 "searched item's title and current product item's title are not equals!");
     }
+
 }
