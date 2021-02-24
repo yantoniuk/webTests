@@ -1,0 +1,25 @@
+version: '3'
+services:
+  selenoid-ui:
+    network_mode: bridge
+    image: aerokube/selenoid-ui
+    links:
+      - selenoid
+    ports:
+      - "8080:8080"
+    command: [ "--selenoid-uri", "http://selenoid:4444"]
+
+  selenoid:
+    network_mode: bridge
+    image: aerokube/selenoid
+    volumes:
+      - "/Users/yantoniuk/Desktop/webTests/config:/etc/selenoid"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/Users/yantoniuk/Desktop/webTests/config:/opt/selenoid/video"
+      - "/Users/yantoniuk/Desktop/webTests/config:/opt/selenoid/logs"
+    ports:
+      - "4444:4444"
+
+    environment:
+      - OVERRIDE_VIDEO_OUTPUT_DIR=/Users/yantoniuk/Desktop/webTests/config/video
+    command: [ "-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/log"]

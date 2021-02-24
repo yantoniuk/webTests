@@ -20,7 +20,7 @@
 
 	<test name="XLS DataProvider with Retry">
 		<classes>
-			<class name="com.solvd.carina.demo.regression.dataprovider.XlsDataproviderRetryTest" />
+			<class name="com.solvd.shop24.SearchProductsTest" />
 		</classes>
 	</test>
 
