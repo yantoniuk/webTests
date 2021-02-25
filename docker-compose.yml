@@ -1,29 +1,32 @@
 version: '3'
 services:
+  selenoid-ui:
+    network_mode: bridge
+    image: aerokube/selenoid-ui
+    ports:
+      - 8080:8080
+    command: ["--webdriver-uri", "http://ggr:4445", "--selenoid-uri", "http://ggr-ui:8888"]
+    links:
+      - ggr-ui
+      - selenoid
+
   ggr-ui:
+    network_mode: bridge
+    restart: always
     image: aerokube/ggr-ui:latest-release
     ports:
       - 8888:8888
     volumes:
-      - /etc/grid-router:/etc/grid-router:ro
+       - /Users/yantoniuk/Desktop/webTests/etc/grid-router:/etc/grid-router:ro
 
   ggr:
+    network_mode: bridge
     image: aerokube/ggr:latest-release
     ports:
-      - 5555:5555
-    restart: unless-stopped
+      - 4445:4445
+    restart: always
     volumes:
-      - /etc/grid-router:/etc/grid-router:ro
-    command: [ "-listen", ":5555" ]
-
-  selenoid-ui:
-    network_mode: bridge
-    image: aerokube/selenoid-ui
-    links:
-      - selenoid
-    ports:
-      - "8080:8080"
-    command: [ "--selenoid-uri", "http://selenoid:4444"]
+      - /Users/yantoniuk/Desktop/webTests/etc/grid-router:/etc/grid-router:ro
 
   selenoid:
     network_mode: bridge
@@ -34,8 +37,7 @@ services:
       - "/Users/yantoniuk/Desktop/webTests/config:/opt/selenoid/video"
       - "/Users/yantoniuk/Desktop/webTests/config:/opt/selenoid/logs"
     ports:
-      - "4444:4444"
-
+      - 4444:4444
     environment:
       - OVERRIDE_VIDEO_OUTPUT_DIR=/Users/yantoniuk/Desktop/webTests/config/video
     command: [ "-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/log"]

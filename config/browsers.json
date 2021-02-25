@@ -6,7 +6,10 @@
         "image": "selenoid/vnc:chrome_88.0",
         "env" : ["LANG=ru_RU.UTF-8", "LANGUAGE=ru:en", "LC_ALL=ru_RU.UTF-8"],
         "port": "4444",
-        "path": "/"
+        "path": "/",
+        "tmpfs": {
+          "/tmp": "size=128m"
+        }
       }
     }
   },
@@ -16,7 +19,10 @@
       "57.0": {
         "image": "selenoid/vnc:firefox_57.0",
         "port": "4444",
-        "path": "/wd/hub"
+        "path": "/wd/hub",
+        "tmpfs": {
+          "/tmp": "size=128m"
+        }
       }
     }
   },
@@ -28,7 +34,10 @@
         "port": "4444",
         "path": "/",
         "cpu" : "1.0",
-        "mem" : "512m"
+        "mem" : "512m",
+        "tmpfs": {
+          "/tmp": "size=128m"
+        }
       }
     }
   }
