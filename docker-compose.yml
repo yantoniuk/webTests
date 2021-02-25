@@ -5,7 +5,7 @@ services:
     image: aerokube/selenoid-ui
     ports:
       - 8080:8080
-    command: ["--webdriver-uri", "http://ggr:4445", "--selenoid-uri", "http://ggr-ui:8888"]
+    command: ["--selenoid-uri", "http://ggr-ui:8888"]
     links:
       - ggr-ui
       - selenoid
