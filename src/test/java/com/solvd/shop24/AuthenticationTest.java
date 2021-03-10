@@ -1,6 +1,7 @@
 package com.solvd.shop24;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.crypto.CryptoConsole;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
@@ -18,13 +19,12 @@ import org.testng.asserts.SoftAssert;
 public class AuthenticationTest extends AbstractTest {
 
     @Test
-    @Parameters({"browserName"})
     @MethodOwner(owner = "yantoniuk")
-    public void testSuccessAuthentication(String browserName) {
-        HomePageBase homePage = initPage(getDriver(browserName), HomePageBase.class);
+    public void testSuccessAuthentication() {
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
-
+        System.out.println();
         AuthenticationPageBase authenticationPage = homePage.getMenu().navigateToAuthenticationPage();
         Assert.assertTrue(authenticationPage.isPageOpened(), "Authentication page wasn't opened!");
         ProfilePageBase profilePage = authenticationPage.authentication(R.TESTDATA.get("account.authPhoneNumber"),

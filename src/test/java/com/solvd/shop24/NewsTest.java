@@ -27,9 +27,8 @@ public class NewsTest extends AbstractTest {
 
     @Test
     @MethodOwner(owner = "yantoniuk")
-    @Parameters({"browserName"})
-    public void testReadNews(String browserName) {
-        HomePageBase homePage = initPage(getDriver(browserName), HomePageBase.class);
+    public void testReadNews() {
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
         NewsPageBase newsPage = homePage.getMenu().openNews();

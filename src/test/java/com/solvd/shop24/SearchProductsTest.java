@@ -15,20 +15,12 @@ import java.util.Random;
 
 public class SearchProductsTest extends AbstractTest {
 
-    private WebDriver driver;
-
-    @BeforeMethod
-    @Parameters({"browserName"})
-    private void up(String browserName) {
-        driver = getDriver(browserName);
-    }
-
     @Test(dataProvider = "DataProvider")
     @MethodOwner(owner = "yantoniuk")
     @XlsDataSourceParameters(path = "xls/Book1.xlsx", sheet = "Products",
             dsUid = "TUID" , dsArgs = "name")
     public void testSearchProduct(String name) {
-        HomePageBase homePage = initPage(this.driver, HomePageBase.class);
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
 
@@ -43,5 +35,4 @@ public class SearchProductsTest extends AbstractTest {
         Assert.assertTrue(productPage.getTitle().contains(searchProductTitle),
                 "searched item's title and current product item's title are not equals!");
     }
-
 }
