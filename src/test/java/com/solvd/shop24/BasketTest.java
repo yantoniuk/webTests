@@ -10,7 +10,6 @@ import com.solvd.shop24.gui.desktop.pages.HomePage;
 import com.solvd.shop24.gui.desktop.pages.purchase.BasketPage;
 import com.solvd.shop24.gui.desktop.pages.purchase.ProductPage;
 import com.solvd.shop24.gui.desktop.pages.purchase.SearchPage;
-import io.appium.java_client.ios.IOSDriver;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;

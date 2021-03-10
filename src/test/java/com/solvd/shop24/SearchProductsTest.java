@@ -6,8 +6,6 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.solvd.shop24.gui.common.pages.HomePageBase;
 import com.solvd.shop24.gui.common.pages.purchase.ProductPageBase;
 import com.solvd.shop24.gui.common.pages.purchase.SearchPageBase;
-import org.openqa.selenium.WebDriver;
-import org.springframework.test.context.event.annotation.BeforeTestMethod;
 import org.testng.Assert;
 import org.testng.annotations.*;
 

@@ -1,17 +1,12 @@
 package com.solvd.shop24;
 
-import com.beust.jcommander.Parameter;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.core.foundation.webdriver.core.capability.impl.desktop.ChromeCapabilities;
-import com.qaprosoft.carina.core.foundation.webdriver.core.capability.impl.desktop.FirefoxCapabilities;
 import com.solvd.shop24.gui.common.components.news.ArticleItem;
 import com.solvd.shop24.gui.common.components.news.ArticleItemBase;
 import com.solvd.shop24.gui.common.pages.HomePageBase;
 import com.solvd.shop24.gui.common.pages.news.ArticlePageBase;
 import com.solvd.shop24.gui.common.pages.news.NewsPageBase;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;

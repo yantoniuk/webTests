@@ -1,14 +1,12 @@
 package com.solvd.shop24;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
-import com.qaprosoft.carina.core.foundation.crypto.CryptoConsole;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.solvd.shop24.gui.common.pages.HomePageBase;
 import com.solvd.shop24.gui.common.pages.profile.AuthenticationPageBase;
 import com.solvd.shop24.gui.common.pages.profile.ProfilePageBase;
-import org.junit.After;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
