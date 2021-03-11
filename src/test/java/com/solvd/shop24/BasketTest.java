@@ -25,7 +25,6 @@ public class BasketTest extends AbstractTest {
         homePage.open();
         SearchPageBase searchPage = homePage.getMenu().searchProductBySearchField("когтеточка");
         int productIndex = new Random().nextInt(searchPage.getProducts().size() - 1);
-        System.out.println("opening product page....");
         ProductPageBase productPage = searchPage.getItem(productIndex).openItem();
         String title = productPage.getTitle();
         productPage.addToBasket();
