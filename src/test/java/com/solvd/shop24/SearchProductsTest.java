@@ -20,7 +20,7 @@ public class SearchProductsTest extends AbstractTest {
     public void testSearchProduct(String name) {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
+        Assert.assertTrue(homePage.isPageOpened(), "Home page was not opened!");
 
         SearchPageBase searchPage = homePage.getMenu().searchProductBySearchField(name);
         Assert.assertEquals(searchPage.getMenu().getSearchInputFieldText(), name,
