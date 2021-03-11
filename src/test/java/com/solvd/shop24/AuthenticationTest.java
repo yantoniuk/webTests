@@ -22,7 +22,6 @@ public class AuthenticationTest extends AbstractTest {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
-        System.out.println();
         AuthenticationPageBase authenticationPage = homePage.getMenu().navigateToAuthenticationPage();
         Assert.assertTrue(authenticationPage.isPageOpened(), "Authentication page wasn't opened!");
         ProfilePageBase profilePage = authenticationPage.authentication(R.TESTDATA.get("account.authPhoneNumber"),
