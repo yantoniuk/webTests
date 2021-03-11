@@ -7,7 +7,6 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.solvd.shop24.gui.common.pages.HomePageBase;
 import com.solvd.shop24.gui.common.pages.profile.AuthenticationPageBase;
 import com.solvd.shop24.gui.common.pages.profile.ProfilePageBase;
-import org.junit.After;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -18,13 +17,11 @@ import org.testng.asserts.SoftAssert;
 public class AuthenticationTest extends AbstractTest {
 
     @Test
-    @Parameters({"browserName"})
     @MethodOwner(owner = "yantoniuk")
-    public void testSuccessAuthentication(String browserName) {
-        HomePageBase homePage = initPage(getDriver(browserName), HomePageBase.class);
+    public void testSuccessAuthentication() {
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
-
         AuthenticationPageBase authenticationPage = homePage.getMenu().navigateToAuthenticationPage();
         Assert.assertTrue(authenticationPage.isPageOpened(), "Authentication page wasn't opened!");
         ProfilePageBase profilePage = authenticationPage.authentication(R.TESTDATA.get("account.authPhoneNumber"),

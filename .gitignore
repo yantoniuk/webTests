@@ -33,6 +33,5 @@ reports/*
 *new_custom_messages_*.properties
 /bin/
 *.DS_Store
-src/main/resources/crypto.key
 /config/logs
 /config/video
