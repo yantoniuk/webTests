@@ -1,17 +1,12 @@
 package com.solvd.shop24;
 
-import com.beust.jcommander.Parameter;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.core.foundation.webdriver.core.capability.impl.desktop.ChromeCapabilities;
-import com.qaprosoft.carina.core.foundation.webdriver.core.capability.impl.desktop.FirefoxCapabilities;
 import com.solvd.shop24.gui.common.components.news.ArticleItem;
 import com.solvd.shop24.gui.common.components.news.ArticleItemBase;
 import com.solvd.shop24.gui.common.pages.HomePageBase;
 import com.solvd.shop24.gui.common.pages.news.ArticlePageBase;
 import com.solvd.shop24.gui.common.pages.news.NewsPageBase;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
@@ -27,10 +22,10 @@ public class NewsTest extends AbstractTest {
 
     @Test
     @MethodOwner(owner = "yantoniuk")
-    @Parameters({"browserName"})
-    public void testReadNews(String browserName) {
-        HomePageBase homePage = initPage(getDriver(browserName), HomePageBase.class);
+    public void testReadNews() {
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
+        getDriver().get("https://24shop.by");
         Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
         NewsPageBase newsPage = homePage.getMenu().openNews();
         Assert.assertTrue(homePage.isPageOpened(), "News page wasn't opened!");

@@ -14,11 +14,9 @@ public class BasketPage extends BasketPageBase {
 
     @FindBy(xpath = "//div[@class='basket-items']//div[@class='basket-block-main']")
     private List<BasketItem> products;
-
     public BasketPage(WebDriver driver) {
         super(driver);
     }
-
     public List<BasketItem> getProducts() {
         return products;
     }

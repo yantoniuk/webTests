@@ -15,11 +15,11 @@ import java.util.Random;
 public class NavigationTest extends AbstractTest {
 
     @Test
-    @Parameters({"browserName"})
     @MethodOwner(owner = "yantoniuk")
-    public void testSearchByCatalog(String browserName) {
-        HomePageBase homePage = initPage(getDriver(browserName), HomePageBase.class);
+    public void testSearchByCatalog() {
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
+        getDriver().get("https://24shop.by");
         Assert.assertTrue(homePage.isPageOpened(), "Home page wasn't opened!");
         Assert.assertTrue(homePage.getMenu().catalogItemsCount() > 0, "Products were expected!");
 
